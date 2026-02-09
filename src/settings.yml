@@ -4,7 +4,7 @@ no_screen_padding: 'no'
 dark_mode: 'no'
 static_data: ''
 polling_verb: get
-polling_url: "https://data.brisbane.qld.gov.au/api/explore/v2.1/catalog/datasets/waste-collection-days-collection-days/records?where=house_number%20like%20%22{{ housenumber }}%22%20%20and%20street_name%20like%20%22{{ streetname }}%22%20and%20suburb%20like%20%22{{ suburb }}%22%20and%20unit_number%20like%20%22{{ unitnumber }}%22&limit=10&offset=0&timezone=UTC&include_links=false&include_app_metas=false\r\nhttps://data.brisbane.qld.gov.au/api/explore/v2.1/catalog/datasets/waste-collection-days-collection-weeks/records?where=zone%20%3D%20%22Zone%201%22&limit=20"
+polling_url: "https://data.brisbane.qld.gov.au/api/explore/v2.1/catalog/datasets/waste-collection-days-collection-days/records?where=suburb%20like%20%27{{ suburb }}%27%20and%20house_number%20%3D%20%27{{ housenumber  }}%27%20and%20street_name%20like%20%27{{ streetname  }}%27{% if unitnumber != \"\" %}and%20unit_number%20%3D%20%27{{ unitnumber  }}%27%20{% endif %}&limit=10&offset=0&timezone=UTC&include_links=false&include_app_metas=false\r\nhttps://data.brisbane.qld.gov.au/api/explore/v2.1/catalog/datasets/waste-collection-days-collection-weeks/records?order_by=week_starting%20asc&limit=26&offset=0&timezone=UTC&include_links=false&include_app_metas=false"
 polling_headers: ''
 polling_body: ''
 id: 240601

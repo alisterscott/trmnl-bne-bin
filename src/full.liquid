@@ -1,16 +1,55 @@
-<div class="layout layout--stretch">
-  <div class="richtext richtext--left">
-    <div class="content gap--small simplenotestart" data-content-limiter="true">
-      {{ formatted }}
-      <div class="simplenoteend"></div>
+{% assign collection_today = false %}
+{% assign collection_tomorrow = false %}
+{% assign custom_fields_values = trmnl.plugin_settings.custom_fields_values %}
+{% if custom_fields_values.unitnumber != '' %}
+    {% assign original_address = custom_fields_values.unitnumber | append: "/" | append: custom_fields_values.housenumber | append: " " | append: custom_fields_values.streetname | append: ", " | append: custom_fields_values.suburb  %}
+{% else %}
+    {% assign original_address = custom_fields_values.housenumber | append: " " | append: custom_fields_values.streetname | append: ", " | append: custom_fields_values.suburb  %}
+{% endif %}
+{% if IDX_0.total_count == 0 %}
+    {% assign address = "Unknown Address" %}
+    {% assign error = true %}
+{% elsif IDX_0.results[0].unit_number != null %}
+    {% assign address = IDX_0.results[0].unit_number | append: "/" | append: IDX_0.results[0].house_number | append: " " | append: IDX_0.results[0].street_name | append: ", " | append: IDX_0.results[0].suburb %}
+{% else %}
+    {% assign address = IDX_0.results[0].house_number | append: " " | append: IDX_0.results[0].street_name | append: ", " | append: IDX_0.results[0].suburb %}
+{% endif %}
+{% if error != true %}
+    {% assign today = "now" | date: "%s" | plus: trmnl.user.utc_offset | date: "%A" | upcase %}
+    {% assign seconds_per_day = 86400 %}
+    {% assign tomorrow = "now" | date: "%s" | plus: trmnl.user.utc_offset | plus: seconds_per_day | date: "%A" | upcase %}
+    {% assign collection_day = IDX_0.results[0].collection_day %}
+    {% if collection_day == today %}
+         {% assign collection_today = true %}
+    {% endif %}
+    {% if collection_day == tomorrow %}
+        {% assign collection_tomorrow = true %}
+    {% endif %}
+{% endif %}
+
+<div class="layout">
+  <div class="columns">
+    <div class="column">
+      <div class="markdown gap--large">
+        <span class="title">BNE BIN</span>
+        <div class="content-element content clamp--20" data-content-max-height="320">
+            {% if error %}
+                <p>Unable to find "{{ original_address }}". Please check your plugin settings.</p>
+            {% elsif collection_tomorrow %}
+                <p>Bin collection is tomorrow. Make sure you put your bins out by 5:30am tomorrow!</p>
+            {% elsif collection_today %}
+                <p>Bin collection is today. Make sure you bring your bins back in!</p>
+            {% else %}
+                <p>Next collection day is {{ collection_day }}</p>
+            {% endif %}
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="title_bar">
-  <img src="https://app.simplenote.com/img/logo.png"/>
-  <span class="title">Published with Simplenote</span>
-  <span class="instance">
-    http://simp.ly/p/{{ trmnl.plugin_settings.custom_fields_values.simplenoteid }}
-  </span>
+  <img class="image" src="https://trmnl.com/images/plugins/trmnl--render.svg">
+  <span class="title">BNE BIN</span>
+  <span class="instance">{{ address }} </span>
 </div>
