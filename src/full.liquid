@@ -64,13 +64,21 @@
         <div class="content-element content clamp--20" data-content-max-height="320">
             {% if error %}
                 <p>Unable to find "{{ original_address }}". Please check your plugin settings.</p>
-            {% elsif collection_tomorrow %}
-                <p>Bin collection is tomorrow. Make sure you put your bins out by 5:30am tomorrow!</p>
-            {% elsif collection_today %}
-                <p>Bin collection is today. Make sure you bring your bins back in!</p>
             {% else %}
-                <p>Next collection day is {{ collection_day }}</p>
+                {% if collection_tomorrow %}
+                    <p>Bin collection is tomorrow. Make sure you put your bins out by 5:30am tomorrow!</p>
+                {% elsif collection_today %}
+                    <p>Bin collection is today. Make sure you bring your bins back in!</p>
+                {% else %}
+                    <p>Next collection day is {{ collection_day }}</p>
+                {% endif %}
+                {% if recycling_week %}
+                    <p>It's recycling week! Please put out your recycling bin.</p>
+                {% elsif green_waste_week %}
+                    <p>It's green waste week! Please put out your green waste bin.</p>
+                {% endif %}
             {% endif %}
+
         </div>
       </div>
     </div>
