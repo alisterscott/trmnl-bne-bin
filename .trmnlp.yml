@@ -10,7 +10,7 @@ time_zone: Australia/Brisbane
 # values of custom fields (defined in src/settings.yml)
 custom_fields:
   bintypes: "red,green"
-  housenumber: 65
-  unitnumber: 3
-  streetname: Lambton St
-  suburb: Annerley
+  housenumber: 33
+  unitnumber:
+  streetname: Franklin St
+  suburb: Highgate Hill
