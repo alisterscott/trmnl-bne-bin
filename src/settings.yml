@@ -1,0 +1,46 @@
+---
+strategy: polling
+no_screen_padding: 'no'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+polling_url: "https://data.brisbane.qld.gov.au/api/explore/v2.1/catalog/datasets/waste-collection-days-collection-days/records?where=house_number%20like%20%22{{ housenumber }}%22%20%20and%20street_name%20like%20%22{{ streetname }}%22%20and%20suburb%20like%20%22{{ suburb }}%22%20and%20unit_number%20like%20%22{{ unitnumber }}%22&limit=10&offset=0&timezone=UTC&include_links=false&include_app_metas=false\r\nhttps://data.brisbane.qld.gov.au/api/explore/v2.1/catalog/datasets/waste-collection-days-collection-weeks/records?where=zone%20%3D%20%22Zone%201%22&limit=20"
+polling_headers: ''
+polling_body: ''
+id: 240601
+custom_fields:
+- keyname: author_bio
+  field_type: author_bio
+  name: Brisbane Bin Collection
+  description: Bin Collection for Brisbane Australia
+  category: life,productivity
+  github_url: https://github.com/alisterscott/trmnl-bne-bin
+- keyname: bintypes
+  field_type: select
+  name: Bin Types
+  help_text: Use <kbd>⌘</kbd>+<kbd>click</kbd> or <kbd>ctrl</kbd>+<kbd>click</kbd> to select and deselect multiple options.
+  default: red
+  options:
+  - red
+  - yellow
+  - green
+  multiple: true
+- keyname: housenumber
+  field_type: number
+  name: House Number
+  placeholder: '111'
+- keyname: unitnumber
+  field_type: number
+  name: Unit Number
+  description: Optional
+  optional: true
+- keyname: streetname
+  field_type: string
+  name: Street Name
+  placeholder: Dudley St
+- keyname: suburb
+  field_type: text
+  name: Suburb
+  placeholder: Annerley
+name: BNE BIN Collection
+refresh_interval: 30
