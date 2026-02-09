@@ -41,6 +41,6 @@ custom_fields:
 - keyname: suburb
   field_type: text
   name: Suburb
-  placeholder: Annerley
+  placeholder: Highgate Hill
 name: BNE BIN Collection
 refresh_interval: 30
