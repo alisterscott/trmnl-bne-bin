@@ -1,6 +1,29 @@
 {% assign collection_today = false %}
 {% assign collection_tomorrow = false %}
+{% assign recycling_week = false %}
+{% assign green_waste_week = false %}  
 {% assign custom_fields_values = trmnl.plugin_settings.custom_fields_values %}
+
+{%- assign today_timestamp = "now" | date: "%s" | plus: trmnl.user.utc_offset -%}
+{%- assign today_date = today_timestamp | date: "%Y-%m-%d" -%}
+{%- assign day_of_week = today_timestamp | date: "%w" | plus: 0 -%}
+{%- assign days_since_monday = day_of_week -%}
+{%- if day_of_week == 0 -%}
+  {%- assign days_since_monday = 6 -%}
+{%- else -%}
+  {%- assign days_since_monday = day_of_week | minus: 1 -%}
+{%- endif -%}
+{%- assign seconds_to_subtract = days_since_monday | times: 86400 -%}
+{%- assign week_start_timestamp = today_timestamp | minus: seconds_to_subtract -%}
+{%- assign week_starting = week_start_timestamp | date: "%Y-%m-%d" -%}
+
+{%- assign this_weeks_zone = "" -%}
+{%- for result in IDX_1.results -%}
+  {%- if result.week_starting == week_starting -%}
+    {%- assign this_weeks_zone = result.zone | upcase -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
 {% if custom_fields_values.unitnumber != '' %}
     {% assign original_address = custom_fields_values.unitnumber | append: "/" | append: custom_fields_values.housenumber | append: " " | append: custom_fields_values.streetname | append: ", " | append: custom_fields_values.suburb  %}
 {% else %}
@@ -24,6 +47,12 @@
     {% endif %}
     {% if collection_day == tomorrow %}
         {% assign collection_tomorrow = true %}
+    {% endif %}
+    {% assign my_zone = IDX_0.results[0].zone | upcase %}
+    {% if this_weeks_zone == my_zone %}
+        {% assign recycling_week = true %}
+    {% else %}
+        {% assign green_waste_week = true %}
     {% endif %}
 {% endif %}
 
