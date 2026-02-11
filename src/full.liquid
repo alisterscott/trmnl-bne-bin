@@ -1,7 +1,7 @@
 {% assign collection_today = false %}
 {% assign collection_tomorrow = false %}
 {% assign recycling_week = false %}
-{% assign green_waste_week = false %}  
+{% assign green_waste_week = false %}
 {% assign custom_fields_values = trmnl.plugin_settings.custom_fields_values %}
 
 {%- assign today_timestamp = "now" | date: "%s" | plus: trmnl.user.utc_offset -%}

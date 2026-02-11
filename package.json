@@ -1,0 +1,33 @@
+{
+  "name": "trmnl-bne-bin",
+  "version": "1.0.0",
+  "description": "1. `brew install rbenv` 2. `brew install firefox@nightly` 3. `brew install ImageMagick` 4. `rbenv init` 5. `rbenv local` 6. `bundler install`   7. `trmnlp login` 8. `APP_ENV=production trmnlp serve` 9. `trmnlp push`",
+  "homepage": "https://github.com/alisterscott/trmnl-bne-bin#readme",
+  "bugs": {
+    "url": "https://github.com/alisterscott/trmnl-bne-bin/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alisterscott/trmnl-bne-bin.git"
+  },
+  "license": "MIT",
+  "author": "alisterscott",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+"devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/config": "^3.3.5",
+    "@types/node": "^24.9.1",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
+    "@typescript-eslint/parser": "^8.46.2",
+    "config": "^3.3.6",
+    "eslint": "^9.38.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

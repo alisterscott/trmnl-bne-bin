@@ -9,5 +9,5 @@
 5. `rbenv local`
 6. `bundler install`  
 7. `trmnlp login`
-8. `trmnlp serve`
+8. `APP_ENV=production trmnlp serve`
 9. `trmnlp push`
