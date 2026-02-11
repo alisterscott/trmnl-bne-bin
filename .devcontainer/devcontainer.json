@@ -6,6 +6,7 @@
     "desktop-lite": {
       "webPort": "6080"
     },
-    "ghcr.io/devcontainers/features/ruby:1": {}
+    "ghcr.io/devcontainers/features/ruby:1": {},
+    "git-lfs": "latest"
   }
 }
