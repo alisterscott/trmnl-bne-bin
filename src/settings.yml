@@ -1,46 +1,50 @@
 ---
 strategy: polling
-no_screen_padding: 'no'
-dark_mode: 'no'
-static_data: ''
+no_screen_padding: "no"
+dark_mode: "no"
+static_data: "{\r\n  \"IDX_0\": {\r\n    \"results\": [\r\n      {\r\n        \"zone\": \"ZONE 2\",\r\n        \"suburb\": \"ANNERLEY\",\r\n        \"property_id\": \"814451\",\r\n        \"street_name\": \"LAMBTON ST\",\r\n        \"suburb_list\": \"A, ANNERLEY\",\r\n        \"unit_number\": \"3\",\r\n        \"house_number\": \"65\",\r\n        \"collection_day\": \"THURSDAY\",\r\n        \"street_name_list\": \"L, LAMBTON ST\",\r\n        \"house_number_suffix\": null\r\n      }\r\n    ],\r\n    \"total_count\": 1\r\n  },\r\n  \"IDX_1\": {\r\n    \"results\": [\r\n      {\r\n        \"zone\": \"Zone 2\",\r\n        \"week_starting\": \"2025-11-24\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 1\",\r\n        \"week_starting\": \"2025-12-01\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 2\",\r\n        \"week_starting\": \"2025-12-08\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 1\",\r\n        \"week_starting\": \"2025-12-15\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 2\",\r\n        \"week_starting\": \"2025-12-22\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 1\",\r\n        \"week_starting\": \"2025-12-29\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 2\",\r\n        \"week_starting\": \"2026-01-05\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 1\",\r\n        \"week_starting\": \"2026-01-12\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 2\",\r\n        \"week_starting\": \"2026-01-19\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 1\",\r\n        \"week_starting\": \"2026-01-26\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 2\",\r\n        \"week_starting\": \"2026-02-02\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 1\",\r\n        \"week_starting\": \"2026-02-09\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 2\",\r\n        \"week_starting\": \"2026-02-16\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 1\",\r\n        \"week_starting\": \"2026-02-23\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 2\",\r\n        \"week_starting\": \"2026-03-02\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 1\",\r\n        \"week_starting\": \"2026-03-09\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 2\",\r\n        \"week_starting\": \"2026-03-16\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 1\",\r\n        \"week_starting\": \"2026-03-23\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 2\",\r\n        \"week_starting\": \"2026-03-30\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 1\",\r\n        \"week_starting\": \"2026-04-06\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 2\",\r\n        \"week_starting\": \"2026-04-13\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 1\",\r\n        \"week_starting\": \"2026-04-20\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 2\",\r\n        \"week_starting\": \"2026-04-27\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 1\",\r\n        \"week_starting\": \"2026-05-04\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 2\",\r\n        \"week_starting\": \"2026-05-11\"\r\n      },\r\n      {\r\n        \"zone\": \"Zone 1\",\r\n        \"week_starting\": \"2026-05-18\"\r\n      }\r\n    ],\r\n    \"total_count\": 162\r\n  }\r\n}\r\n"
 polling_verb: get
 polling_url: "https://data.brisbane.qld.gov.au/api/explore/v2.1/catalog/datasets/waste-collection-days-collection-days/records?where=suburb%20like%20%27{{ suburb }}%27%20and%20house_number%20%3D%20%27{{ housenumber  }}%27%20and%20street_name%20like%20%27{{ streetname  }}%27{% if unitnumber != \"\" %}and%20unit_number%20%3D%20%27{{ unitnumber  }}%27%20{% endif %}&limit=10&offset=0&timezone=UTC&include_links=false&include_app_metas=false\r\nhttps://data.brisbane.qld.gov.au/api/explore/v2.1/catalog/datasets/waste-collection-days-collection-weeks/records?order_by=week_starting%20asc&limit=26&offset=0&timezone=UTC&include_links=false&include_app_metas=false"
-polling_headers: ''
-polling_body: ''
+polling_headers: ""
+polling_body: ""
 id: 240601
 custom_fields:
-- keyname: author_bio
-  field_type: author_bio
-  name: Brisbane Bin Collection
-  description: Bin Collection for Brisbane Australia
-  category: life,productivity
-  github_url: https://github.com/alisterscott/trmnl-bne-bin
-- keyname: bintypes
-  field_type: select
-  name: Bin Types
-  help_text: Use <kbd>⌘</kbd>+<kbd>click</kbd> or <kbd>ctrl</kbd>+<kbd>click</kbd> to select and deselect multiple options.
-  default: red
-  options:
-  - red
-  - yellow
-  - green
-  multiple: true
-- keyname: housenumber
-  field_type: number
-  name: House Number
-  placeholder: '111'
-- keyname: unitnumber
-  field_type: number
-  name: Unit Number
-  description: Optional
-  optional: true
-- keyname: streetname
-  field_type: string
-  name: Street Name
-  placeholder: Dudley St
-- keyname: suburb
-  field_type: text
-  name: Suburb
-  placeholder: Highgate Hill
+  - keyname: author_bio
+    field_type: author_bio
+    name: Brisbane Bin Collection
+    description: Bin Collection for Brisbane Australia
+    category: life,productivity
+    github_url: https://github.com/alisterscott/trmnl-bne-bin
+  - keyname: include_green_waste
+    field_type: select
+    name: Include Green Waste Bin?
+    description: If set to no the green waste bin will not be displayed
+    options:
+      - "Yes"
+      - "No"
+    default: "yes"
+  - keyname: housenumber
+    field_type: number
+    name: House Number
+    placeholder: "111"
+  - keyname: unitnumber
+    field_type: number
+    name: Unit Number
+    description: Optional
+    optional: true
+  - keyname: streetname
+    field_type: string
+    name: Street Name
+    placeholder: Dudley St
+  - keyname: suburb
+    field_type: text
+    name: Suburb
+    placeholder: Highgate Hill
+  - keyname: testing_date
+    field_type: date
+    name: Testing Date
+    description: This is for testing purposes only, leave blank to use today's date
+    optional: true
+    help_text: optional and for testing purposes only
 name: BNE BIN Collection
 refresh_interval: 30
