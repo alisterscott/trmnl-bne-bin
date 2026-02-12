@@ -6,7 +6,7 @@ test("can see a invalid house address when nothing is returned by the API for a 
   page,
 }) => {
   const sourceFile = path.join(__dirname, "invalidhouse.trmnlp.yml");
-  const destFile = path.join(__dirname, "..", ".trmnlp.yml");
+  const destFile = path.join(__dirname, "..", "..", ".trmnlp.yml");
 
   if (!fs.existsSync(sourceFile)) {
     throw new Error(`Source file not found: ${sourceFile}`);
@@ -41,7 +41,7 @@ test("can see a invalid unit address when nothing is returned by the API for a u
   page,
 }) => {
   const sourceFile = path.join(__dirname, "invalidunit.trmnlp.yml");
-  const destFile = path.join(__dirname, "..", ".trmnlp.yml");
+  const destFile = path.join(__dirname, "..", "..", ".trmnlp.yml");
 
   if (!fs.existsSync(sourceFile)) {
     throw new Error(`Source file not found: ${sourceFile}`);
