@@ -1,0 +1,58 @@
+{% comment %}
+All images are from https://pictogrammers.com/library/mdi/
+https://github.com/Templarian/MaterialDesign/blob/master/LICENSE
+{% endcomment %}
+
+{% capture title_logo %}<svg viewBox="0 0 24 24" style="height: 28px; width: 28px;">
+  <path fill="currentColor"
+    d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z">
+  </path>
+</svg>{% endcapture %}
+
+{% assign image_size = 128 %}
+{% capture waste_logo %}<svg viewBox="0 0 24 24" style="height: {{ image_size }}px; width: {{ image_size }}px;">
+  <path fill="currentColor"
+    d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z">
+  </path>
+</svg>{% endcapture %}
+{% capture recycling_logo %}<svg viewBox="0 0 24 24" style="height: {{ image_size }}px; width: {{ image_size }}px;">
+  <path fill="currentColor"
+    d="M21.82,15.42L19.32,19.75C18.83,20.61 17.92,21.06 17,21H15V23L12.5,18.5L15,14V16H17.82L15.6,12.15L19.93,9.65L21.73,12.77C22.25,13.54 22.32,14.57 21.82,15.42M9.21,3.06H14.21C15.19,3.06 16.04,3.63 16.45,4.45L17.45,6.19L19.18,5.19L16.54,9.6L11.39,9.69L13.12,8.69L11.71,6.24L9.5,10.09L5.16,7.59L6.96,4.47C7.37,3.64 8.22,3.06 9.21,3.06M5.05,19.76L2.55,15.43C2.06,14.58 2.13,13.56 2.64,12.79L3.64,11.06L1.91,10.06L7.05,10.14L9.7,14.56L7.97,13.56L6.56,16H11V21H7.4C6.47,21.07 5.55,20.61 5.05,19.76Z">
+  </path>
+</svg>{% endcapture %}
+{% capture garden_waste_logo %}<svg viewBox="0 0 24 24" style="height: {{ image_size }}px; width: {{ image_size }}px;">
+  <path fill="currentColor"
+    d="M19.19 18H24L20.14 12H22L15 2L12.61 5.41L17.92 13H15.97L19.19 18M16 12L9 2L2 12H3.86L0 18H7V22H11V18H18L14.14 12H16M12.16 10H10.5L14.34 16H3.67L7.53 10H5.84L9 5.5L12.16 10M13 19V22H17V19H13Z">
+  </path>
+</svg>{% endcapture %}
+{% capture error_logo %}<svg viewBox="0 0 24 24" style="height: {{ image_size }}px; width: {{ image_size }}px;">
+  <path fill="currentColor"
+    d="M8 12H10V14H8V12M8 7H10V11H8V7M18 18.5C18.8 18.5 19.5 17.8 19.5 17S18.8 15.5 18 15.5 16.5 16.2 16.5 17 17.2 18.5 18 18.5M19.5 9.5H17V12H21.5L19.5 9.5M6 18.5C6.8 18.5 7.5 17.8 7.5 17S6.8 15.5 6 15.5 4.5 16.2 4.5 17 5.2 18.5 6 18.5M20 8L23 12V17H21C21 18.7 19.7 20 18 20S15 18.7 15 17H9C9 18.7 7.7 20 6 20S3 18.7 3 17H1V6C1 4.9 1.9 4 3 4H17V8H20M3 6V15H3.8C4.3 14.4 5.2 14 6 14S7.7 14.4 8.2 15H15V6H3Z">
+  </path>
+</svg>{% endcapture %}
+
+{% assign image_size_small = 96 %}
+{% capture waste_logo_small %}<svg viewBox="0 0 24 24"
+  style="height: {{ image_size_small }}px; width: {{ image_size_small }}px;">
+  <path fill="currentColor"
+    d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z">
+  </path>
+</svg>{% endcapture %}
+{% capture recycling_logo_small %}<svg viewBox="0 0 24 24"
+  style="height: {{ image_size_small }}px; width: {{ image_size_small }}px;">
+  <path fill="currentColor"
+    d="M21.82,15.42L19.32,19.75C18.83,20.61 17.92,21.06 17,21H15V23L12.5,18.5L15,14V16H17.82L15.6,12.15L19.93,9.65L21.73,12.77C22.25,13.54 22.32,14.57 21.82,15.42M9.21,3.06H14.21C15.19,3.06 16.04,3.63 16.45,4.45L17.45,6.19L19.18,5.19L16.54,9.6L11.39,9.69L13.12,8.69L11.71,6.24L9.5,10.09L5.16,7.59L6.96,4.47C7.37,3.64 8.22,3.06 9.21,3.06M5.05,19.76L2.55,15.43C2.06,14.58 2.13,13.56 2.64,12.79L3.64,11.06L1.91,10.06L7.05,10.14L9.7,14.56L7.97,13.56L6.56,16H11V21H7.4C6.47,21.07 5.55,20.61 5.05,19.76Z">
+  </path>
+</svg>{% endcapture %}
+{% capture garden_waste_logo_small %}<svg viewBox="0 0 24 24"
+  style="height: {{ image_size_small }}px; width: {{ image_size_small }}px;">
+  <path fill="currentColor"
+    d="M19.19 18H24L20.14 12H22L15 2L12.61 5.41L17.92 13H15.97L19.19 18M16 12L9 2L2 12H3.86L0 18H7V22H11V18H18L14.14 12H16M12.16 10H10.5L14.34 16H3.67L7.53 10H5.84L9 5.5L12.16 10M13 19V22H17V19H13Z">
+  </path>
+</svg>{% endcapture %}
+{% capture error_logo_small %}<svg viewBox="0 0 24 24"
+  style="height: {{ image_size_small }}px; width: {{ image_size_small }}px;">
+  <path fill="currentColor"
+    d="M8 12H10V14H8V12M8 7H10V11H8V7M18 18.5C18.8 18.5 19.5 17.8 19.5 17S18.8 15.5 18 15.5 16.5 16.2 16.5 17 17.2 18.5 18 18.5M19.5 9.5H17V12H21.5L19.5 9.5M6 18.5C6.8 18.5 7.5 17.8 7.5 17S6.8 15.5 6 15.5 4.5 16.2 4.5 17 5.2 18.5 6 18.5M20 8L23 12V17H21C21 18.7 19.7 20 18 20S15 18.7 15 17H9C9 18.7 7.7 20 6 20S3 18.7 3 17H1V6C1 4.9 1.9 4 3 4H17V8H20M3 6V15H3.8C4.3 14.4 5.2 14 6 14S7.7 14.4 8.2 15H15V6H3Z">
+  </path>
+</svg>{% endcapture %}

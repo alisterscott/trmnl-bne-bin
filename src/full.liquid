@@ -1,74 +1,3 @@
-{% comment %}
-All images are from https://pictogrammers.com/library/mdi/
-https://github.com/Templarian/MaterialDesign/blob/master/LICENSE
-{% endcomment %}
-
-{% capture title_logo %}<svg viewBox="0 0 24 24" style="height: 28px; width: 28px;">
-    <path fill="currentColor"
-        d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z">
-    </path>
-</svg>{% endcapture %}
-
-{% assign image_size = 128 %}
-{% capture waste_logo %}<svg viewBox="0 0 24 24" style="height: {{ image_size }}px; width: {{ image_size }}px;">
-    <path fill="currentColor"
-        d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z">
-    </path>
-</svg>{% endcapture %}
-{% capture recycling_logo %}<svg viewBox="0 0 24 24" style="height: {{ image_size }}px; width: {{ image_size }}px;">
-    <path fill="currentColor"
-        d="M21.82,15.42L19.32,19.75C18.83,20.61 17.92,21.06 17,21H15V23L12.5,18.5L15,14V16H17.82L15.6,12.15L19.93,9.65L21.73,12.77C22.25,13.54 22.32,14.57 21.82,15.42M9.21,3.06H14.21C15.19,3.06 16.04,3.63 16.45,4.45L17.45,6.19L19.18,5.19L16.54,9.6L11.39,9.69L13.12,8.69L11.71,6.24L9.5,10.09L5.16,7.59L6.96,4.47C7.37,3.64 8.22,3.06 9.21,3.06M5.05,19.76L2.55,15.43C2.06,14.58 2.13,13.56 2.64,12.79L3.64,11.06L1.91,10.06L7.05,10.14L9.7,14.56L7.97,13.56L6.56,16H11V21H7.4C6.47,21.07 5.55,20.61 5.05,19.76Z">
-    </path>
-</svg>{% endcapture %}
-{% capture food_logo %}<svg viewBox="0 0 24 24" style="height: {{ image_size }}px; width: {{ image_size }}px;">
-    <path fill="currentColor"
-        d="M1 22C1 22.54 1.45 23 2 23H15C15.56 23 16 22.54 16 22V21H1V22M8.5 9C4.75 9 1 11 1 15H16C16 11 12.25 9 8.5 9M3.62 13C4.73 11.45 7.09 11 8.5 11S12.27 11.45 13.38 13H3.62M1 17H16V19H1V17M18 5V1H16V5H11L11.23 7H20.79L19.39 21H18V23H19.72C20.56 23 21.25 22.35 21.35 21.53L23 5H18Z">
-    </path>
-</svg>{% endcapture %}
-{% capture garden_waste_logo %}<svg viewBox="0 0 24 24" style="height: {{ image_size }}px; width: {{ image_size }}px;">
-    <path fill="currentColor"
-        d="M3,13A9,9 0 0,0 12,22A9,9 0 0,0 3,13M5.44,15.44C7.35,16.15 8.85,17.65 9.56,19.56C7.65,18.85 6.15,17.35 5.44,15.44M12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,22M14.42,19.57C15.11,17.64 16.64,16.11 18.57,15.42C17.86,17.34 16.34,18.86 14.42,19.57M12,14A6,6 0 0,0 18,8V3C17.26,3 16.53,3.12 15.84,3.39C15.29,3.62 14.8,3.96 14.39,4.39L12,2L9.61,4.39C9.2,3.96 8.71,3.62 8.16,3.39C7.47,3.12 6.74,3 6,3V8A6,6 0 0,0 12,14M8,5.61L9.57,7.26L12,4.83L14.43,7.26L16,5.61V8A4,4 0 0,1 12,12A4,4 0 0,1 8,8V5.61Z">
-    </path>
-</svg>{% endcapture %}
-{% capture error_logo %}<svg viewBox="0 0 24 24" style="height: {{ image_size }}px; width: {{ image_size }}px;">
-    <path fill="currentColor"
-        d="M8 12H10V14H8V12M8 7H10V11H8V7M18 18.5C18.8 18.5 19.5 17.8 19.5 17S18.8 15.5 18 15.5 16.5 16.2 16.5 17 17.2 18.5 18 18.5M19.5 9.5H17V12H21.5L19.5 9.5M6 18.5C6.8 18.5 7.5 17.8 7.5 17S6.8 15.5 6 15.5 4.5 16.2 4.5 17 5.2 18.5 6 18.5M20 8L23 12V17H21C21 18.7 19.7 20 18 20S15 18.7 15 17H9C9 18.7 7.7 20 6 20S3 18.7 3 17H1V6C1 4.9 1.9 4 3 4H17V8H20M3 6V15H3.8C4.3 14.4 5.2 14 6 14S7.7 14.4 8.2 15H15V6H3Z">
-    </path>
-</svg>{% endcapture %}
-
-
-{% assign image_size_small = 96 %}
-{% capture waste_logo_small %}<svg viewBox="0 0 24 24"
-    style="height: {{ image_size_small }}px; width: {{ image_size_small }}px;">
-    <path fill="currentColor"
-        d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z">
-    </path>
-</svg>{% endcapture %}
-{% capture recycling_logo_small %}<svg viewBox="0 0 24 24"
-    style="height: {{ image_size_small }}px; width: {{ image_size_small }}px;">
-    <path fill="currentColor"
-        d="M21.82,15.42L19.32,19.75C18.83,20.61 17.92,21.06 17,21H15V23L12.5,18.5L15,14V16H17.82L15.6,12.15L19.93,9.65L21.73,12.77C22.25,13.54 22.32,14.57 21.82,15.42M9.21,3.06H14.21C15.19,3.06 16.04,3.63 16.45,4.45L17.45,6.19L19.18,5.19L16.54,9.6L11.39,9.69L13.12,8.69L11.71,6.24L9.5,10.09L5.16,7.59L6.96,4.47C7.37,3.64 8.22,3.06 9.21,3.06M5.05,19.76L2.55,15.43C2.06,14.58 2.13,13.56 2.64,12.79L3.64,11.06L1.91,10.06L7.05,10.14L9.7,14.56L7.97,13.56L6.56,16H11V21H7.4C6.47,21.07 5.55,20.61 5.05,19.76Z">
-    </path>
-</svg>{% endcapture %}
-{% capture food_logo_small %}<svg viewBox="0 0 24 24"
-    style="height: {{ image_size_small }}px; width: {{ image_size_small }}px;">
-    <path fill="currentColor"
-        d="M1 22C1 22.54 1.45 23 2 23H15C15.56 23 16 22.54 16 22V21H1V22M8.5 9C4.75 9 1 11 1 15H16C16 11 12.25 9 8.5 9M3.62 13C4.73 11.45 7.09 11 8.5 11S12.27 11.45 13.38 13H3.62M1 17H16V19H1V17M18 5V1H16V5H11L11.23 7H20.79L19.39 21H18V23H19.72C20.56 23 21.25 22.35 21.35 21.53L23 5H18Z">
-    </path>
-</svg>{% endcapture %}
-{% capture garden_waste_logo_small %}<svg viewBox="0 0 24 24"
-    style="height: {{ image_size_small }}px; width: {{ image_size_small }}px;">
-    <path fill="currentColor"
-        d="M3,13A9,9 0 0,0 12,22A9,9 0 0,0 3,13M5.44,15.44C7.35,16.15 8.85,17.65 9.56,19.56C7.65,18.85 6.15,17.35 5.44,15.44M12,22A9,9 0 0,0 21,13A9,9 0 0,0 12,22M14.42,19.57C15.11,17.64 16.64,16.11 18.57,15.42C17.86,17.34 16.34,18.86 14.42,19.57M12,14A6,6 0 0,0 18,8V3C17.26,3 16.53,3.12 15.84,3.39C15.29,3.62 14.8,3.96 14.39,4.39L12,2L9.61,4.39C9.2,3.96 8.71,3.62 8.16,3.39C7.47,3.12 6.74,3 6,3V8A6,6 0 0,0 12,14M8,5.61L9.57,7.26L12,4.83L14.43,7.26L16,5.61V8A4,4 0 0,1 12,12A4,4 0 0,1 8,8V5.61Z">
-    </path>
-</svg>{% endcapture %}
-{% capture error_logo_small %}<svg viewBox="0 0 24 24"
-    style="height: {{ image_size_small }}px; width: {{ image_size_small }}px;">
-    <path fill="currentColor"
-        d="M8 12H10V14H8V12M8 7H10V11H8V7M18 18.5C18.8 18.5 19.5 17.8 19.5 17S18.8 15.5 18 15.5 16.5 16.2 16.5 17 17.2 18.5 18 18.5M19.5 9.5H17V12H21.5L19.5 9.5M6 18.5C6.8 18.5 7.5 17.8 7.5 17S6.8 15.5 6 15.5 4.5 16.2 4.5 17 5.2 18.5 6 18.5M20 8L23 12V17H21C21 18.7 19.7 20 18 20S15 18.7 15 17H9C9 18.7 7.7 20 6 20S3 18.7 3 17H1V6C1 4.9 1.9 4 3 4H17V8H20M3 6V15H3.8C4.3 14.4 5.2 14 6 14S7.7 14.4 8.2 15H15V6H3Z">
-    </path>
-</svg>{% endcapture %}
-
 {% assign collection_today = false %}
 {% assign collection_tomorrow = false %}
 {% assign recycling_week = false %}
@@ -144,17 +73,53 @@ append: IDX_0.results[0].suburb %}
     </div>
 </div>
 {% else %}
+{% if collection_tomorrow %}
+<div class="layout layout--col layout--stretch-x text--center">
+    <div>
+        <div class="title title--large">Your bin collection is tomorrow!</div>
+        <br>
+        <div class="value value--xxsmall"> Make sure you put your bins out by 5:30am tomorrow</div>
+    </div>
+</div>
+{% elsif collection_today %}
+<div class="layout layout--col layout--stretch-x text--center">
+    <div>
+        <div class="title title--large">Bin collection day</div>
+        <br>
+        <div class="value value--xxsmall"> Make sure you bring your bins back in<br><br>Report a missed collection or
+            problem
+            at tinyurl.com/bne-bin</div>
+    </div>
+</div>
+{% else %}
+<div class="layout layout--col layout--stretch-x text--center">
+    <div>
+        <div class="title title--large">Your next bin collection is {{ collection_day | capitalize }}</div>
+    </div>
+</div>
+{% endif %}
+
 <div class="layout layout--row layout--stretch-x text--center">
     <div>
-        <div class="image image-stroke">{{ error_logo }}</div>
-        <div class="title mb--2">blah</div>
-        <div class="value value--xsmall">meow</div>
+        <div class="image image-stroke">{{ waste_logo }}</div>
+        <div class="title mb--2">RED LID</div>
+        <div class="value value--xsmall">General Waste</div>
     </div>
+    {% if recycling_week %}
     <div>
-        <div class="image image-stroke">{{ error_logo }}</div>
-        <div class="title mb--2">blah</div>
-        <div class="value value--xsmall">new</div>
+        <div class="image image-stroke">{{ recycling_logo }}</div>
+        <div class="title mb--2">YELLOW LID</div>
+        <div class="value value--xsmall">Recycling</div>
     </div>
+    {% endif %}
+
+    {% if green_waste_week %}
+    <div>
+        <div class="image image-stroke">{{ garden_waste_logo }}</div>
+        <div class="title mb--2">GREEN LID</div>
+        <div class="value value--xsmall">Garden Waste</div>
+    </div>
+    {% endif %}
 </div>
 {% endif %}
 
@@ -163,39 +128,3 @@ append: IDX_0.results[0].suburb %}
     <span class="title">BNE BIN</span>
     <span class="instance">{{ address }} </span>
 </div>
-
-
-
-{% comment %} <div class="layout">
-    <div class="columns">
-        <div class="column">
-            <div class="markdown gap--large">
-                <span class="title">BNE BIN</span>
-                <div class="content-element content clamp--20" data-content-max-height="320">
-                    {% if error %}
-                    <p>Unable to find "{{ original_address }}". Please check your plugin settings.</p>
-                    {% else %}
-                    {% if collection_tomorrow %}
-                    <p>Bin collection is tomorrow. Make sure you put your bins out by 5:30am tomorrow!</p>
-                    {% elsif collection_today %}
-                    <p>Bin collection is today. Make sure you bring your bins back in!</p>
-                    {% else %}
-                    <p>Next collection day is {{ collection_day }}</p>
-                    {% endif %}
-                    {% if recycling_week %}
-                    <p>It's recycling week! Please put out your recycling bin.</p>
-                    {% elsif green_waste_week %}
-                    <p>It's green waste week! Please put out your green waste bin.</p>
-                    {% endif %}
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="title_bar">
-    <img class="image" src="https://trmnl.com/images/plugins/trmnl--render.svg">
-    <span class="title">BNE BIN</span>
-    <span class="instance">{{ address }} </span>
-</div> {% endcomment %}
