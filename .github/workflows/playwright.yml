@@ -17,15 +17,16 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - uses: masa-iwasaki/setup-rbenv@v1
-      - name: Install Ruby
-        run: |
-          eval "$(rbenv init -)"
-          rbenv install -s `cat .ruby-version` # or specify the version you want
-      - name: Run bundler
-        run: |
-          eval "$(rbenv init -)"
-          bundle install --path vendor/bundle
+      - name: Set up Ruby
+        # Use ruby/setup-ruby action
+        uses: ruby/setup-ruby@v1
+        with:
+          # Use the version specified in your .ruby-version file
+          ruby-version: .ruby-version
+          # Caches installed gems automatically
+          bundler-cache: true
+      - name: Install dependencies
+        run: bundle install
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v4
