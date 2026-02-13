@@ -27,6 +27,8 @@ jobs:
           bundler-cache: true
       - name: Install dependencies
         run: bundle install
+      - name: Install trmnlp gem
+        run: gem install trmnl_preview
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v4
