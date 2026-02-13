@@ -19,14 +19,20 @@ test("can see a message when bin collection day is today", async ({ page }) => {
   fs.copyFileSync(sourceFile, destFile);
 
   try {
-    await page.goto("/full");
-    const trmnlFrame = page.frameLocator("iframe");
-    await expect(trmnlFrame.locator("div.title.today")).toHaveText(
-      "Bin collection day",
-    );
-    await expect(trmnlFrame.locator("div.value.today")).toHaveText(
-      " Make sure you bring your bins back inReport a missed collection or problem at tinyurl.com/bne-bin",
-    );
+    const routes = ["/quadrant", "/full", "/half_vertical", "/half_horizontal"];
+
+    for (const route of routes) {
+      await test.step(`Testing route: ${route}`, async () => {
+        await page.goto(route);
+        const trmnlFrame = page.frameLocator("iframe");
+        await expect(trmnlFrame.locator("div.title.today")).toHaveText(
+          "Bin collection day",
+        );
+        await expect(trmnlFrame.locator("div.value.today")).toHaveText(
+          " Make sure you bring your bins back inReport a missed collection or problem at tinyurl.com/bne-bin",
+        );
+      });
+    }
   } finally {
     fs.writeFileSync(destFile, originalContent, "utf-8"); // Restore original content
   }
@@ -51,14 +57,20 @@ test("can see a message when bin collection day is tomorrow but this week", asyn
   fs.copyFileSync(sourceFile, destFile);
 
   try {
-    await page.goto("/full");
-    const trmnlFrame = page.frameLocator("iframe");
-    await expect(trmnlFrame.locator("div.title.tomorrow")).toHaveText(
-      "Your bin collection is tomorrow!",
-    );
-    await expect(trmnlFrame.locator("div.value.tomorrow")).toHaveText(
-      " Make sure you put your bins out by 5:30am tomorrow",
-    );
+    const routes = ["/quadrant", "/full", "/half_vertical", "/half_horizontal"];
+
+    for (const route of routes) {
+      await test.step(`Testing route: ${route}`, async () => {
+        await page.goto(route);
+        const trmnlFrame = page.frameLocator("iframe");
+        await expect(trmnlFrame.locator("div.title.tomorrow")).toHaveText(
+          "Your bin collection is tomorrow!",
+        );
+        await expect(trmnlFrame.locator("div.value.tomorrow")).toHaveText(
+          " Make sure you put your bins out by 5:30am tomorrow",
+        );
+      });
+    }
   } finally {
     fs.writeFileSync(destFile, originalContent, "utf-8"); // Restore original content
   }
@@ -83,14 +95,20 @@ test("can see a message when bin collection day is tomorrow but next week", asyn
   fs.copyFileSync(sourceFile, destFile);
 
   try {
-    await page.goto("/full");
-    const trmnlFrame = page.frameLocator("iframe");
-    await expect(trmnlFrame.locator("div.title.tomorrow")).toHaveText(
-      "Your bin collection is tomorrow!",
-    );
-    await expect(trmnlFrame.locator("div.value.tomorrow")).toHaveText(
-      " Make sure you put your bins out by 5:30am tomorrow",
-    );
+    const routes = ["/quadrant", "/full", "/half_vertical", "/half_horizontal"];
+
+    for (const route of routes) {
+      await test.step(`Testing route: ${route}`, async () => {
+        await page.goto(route);
+        const trmnlFrame = page.frameLocator("iframe");
+        await expect(trmnlFrame.locator("div.title.tomorrow")).toHaveText(
+          "Your bin collection is tomorrow!",
+        );
+        await expect(trmnlFrame.locator("div.value.tomorrow")).toHaveText(
+          " Make sure you put your bins out by 5:30am tomorrow",
+        );
+      });
+    }
   } finally {
     fs.writeFileSync(destFile, originalContent, "utf-8"); // Restore original content
   }
@@ -115,11 +133,17 @@ test("can see a message when bin collection day beyond tomorrow this week (Wedne
   fs.copyFileSync(sourceFile, destFile);
 
   try {
-    await page.goto("/full");
-    const trmnlFrame = page.frameLocator("iframe");
-    await expect(trmnlFrame.locator("div.title.later")).toHaveText(
-      "Your next bin collection is this Wednesday",
-    );
+    const routes = ["/quadrant", "/full", "/half_vertical", "/half_horizontal"];
+
+    for (const route of routes) {
+      await test.step(`Testing route: ${route}`, async () => {
+        await page.goto(route);
+        const trmnlFrame = page.frameLocator("iframe");
+        await expect(trmnlFrame.locator("div.title.later")).toHaveText(
+          "Your next bin collection is this Wednesday",
+        );
+      });
+    }
   } finally {
     fs.writeFileSync(destFile, originalContent, "utf-8"); // Restore original content
   }
@@ -144,11 +168,17 @@ test("can see a message when bin collection day beyond tomorrow next week (Monda
   fs.copyFileSync(sourceFile, destFile);
 
   try {
-    await page.goto("/full");
-    const trmnlFrame = page.frameLocator("iframe");
-    await expect(trmnlFrame.locator("div.title.later")).toHaveText(
-      "Your next bin collection is next Monday",
-    );
+    const routes = ["/quadrant", "/full", "/half_vertical", "/half_horizontal"];
+
+    for (const route of routes) {
+      await test.step(`Testing route: ${route}`, async () => {
+        await page.goto(route);
+        const trmnlFrame = page.frameLocator("iframe");
+        await expect(trmnlFrame.locator("div.title.later")).toHaveText(
+          "Your next bin collection is next Monday",
+        );
+      });
+    }
   } finally {
     fs.writeFileSync(destFile, originalContent, "utf-8"); // Restore original content
   }

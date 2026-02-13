@@ -1,0 +1,66 @@
+{% if error %}
+    <div class="layout layout--col layout--stretch-x text--center error">
+        <div>
+            <div class="image image-stroke">{{ error_logo_small }}</div>
+            <div class="title title--medium error">Well this is awkward</div><br>
+            <div class="value value--xxsmall error">Unable to find '{{ original_address }}'. <br><br>Please check your plugin
+                settings.
+            </div>
+        </div>
+    </div>
+{% else %}
+    {% if collection_tomorrow %}
+        <div class="layout layout--col layout--stretch-x text--center tomorrow">
+            <div>
+                <div class="title title--large tomorrow">Your bin collection is tomorrow!</div>
+                <br>
+                <div class="value value--xxsmall tomorrow"> Make sure you put your bins out by 5:30am tomorrow</div>
+            </div>
+        </div>
+    {% elsif collection_today %}
+        <div class="layout layout--col layout--stretch-x text--center today">
+            <div>
+                <div class="title title--large today">Bin collection day</div>
+                <br>
+                <div class="value value--xxsmall today"> Make sure you bring your bins back in<br><br>Report a missed collection or
+                    problem
+                    at tinyurl.com/bne-bin</div>
+            </div>
+        </div>
+    {% else %}
+        <div class="layout layout--col layout--stretch-x text--center later">
+            <div>
+                <div class="title title--medium later">Your next bin collection is {% if next_week_collection %} next {% else %} this {% endif %}{{ collection_day | capitalize }}</div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="layout layout--row layout--stretch-x text--center">
+        <div>
+            <div class="image image-stroke">{{ waste_logo_small }}</div>
+            <div class="title title--small">RED LID</div>
+            <div class="value value--xxsmall">General Waste</div>
+        </div>
+        {% if recycling_week %}
+        <div>
+            <div class="image image-stroke">{{ recycling_logo_small }}</div>
+            <div class="title title--small">YELLOW LID</div>
+            <div class="value value--xxsmall">Recycling</div>
+        </div>
+        {% endif %}
+
+        {% if green_waste_week %}
+        <div>
+            <div class="image image-stroke">{{ garden_waste_logo_small }}</div>
+            <div class="title title--small">GREEN LID</div>
+            <div class="value value--xxsmall">Garden Waste</div>
+        </div>
+        {% endif %}
+    </div>
+{% endif %}
+
+<div class="title_bar">
+    <div class="image image-stroke">{{ title_logo }}</div>
+    <span class="title">BNE BIN</span>
+    <span class="instance">{{ address }} </span>
+</div>
