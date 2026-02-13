@@ -140,7 +140,7 @@ test("can see a message when bin collection day beyond tomorrow this week (Wedne
         await page.goto(route);
         const trmnlFrame = page.frameLocator("iframe");
         await expect(trmnlFrame.locator("div.title.later")).toHaveText(
-          "Your next bin collection is this Wednesday",
+          "Your bin collection is this Wednesday",
         );
       });
     }
@@ -175,7 +175,7 @@ test("can see a message when bin collection day beyond tomorrow next week (Monda
         await page.goto(route);
         const trmnlFrame = page.frameLocator("iframe");
         await expect(trmnlFrame.locator("div.title.later")).toHaveText(
-          "Your next bin collection is next Monday",
+          "Your bin collection is next Monday",
         );
       });
     }
