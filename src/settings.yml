@@ -8,17 +8,19 @@ polling_url: "https://data.brisbane.qld.gov.au/api/explore/v2.1/catalog/datasets
 polling_headers: ""
 polling_body: ""
 id: 240601
+name: BNE BIN Collection
+refresh_interval: 30
 custom_fields:
   - keyname: author_bio
     field_type: author_bio
-    name: Brisbane Bin Collection
-    description: Bin Collection for Brisbane Australia
-    category: life,productivity
+    name: Brisbane Bin Collection by Alister Scott
+    description: A Personalised Bin Collection Schedule for Brisbane, Queensland, Australia
+    category: life,Productivity
     github_url: https://github.com/alisterscott/trmnl-bne-bin
   - keyname: include_green_waste
     field_type: select
     name: Include Green Waste Bin?
-    description: If set to no the green waste bin will not be displayed
+    description: If set to no the green waste bin will NOT be displayed
     options:
       - "Yes"
       - "No"
@@ -43,8 +45,6 @@ custom_fields:
   - keyname: testing_date
     field_type: date
     name: Testing Date
-    description: This is for testing purposes only, leave blank to use today's date
+    description: This is for testing purposes only, leave blank to use today's date for collection
     optional: true
     help_text: optional and for testing purposes only
-name: BNE BIN Collection
-refresh_interval: 30
