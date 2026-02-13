@@ -4,7 +4,13 @@
 {% assign green_waste_week = false %}
 {% assign custom_fields_values = trmnl.plugin_settings.custom_fields_values %}
 
-{%- assign today_timestamp = "now" | date: "%s" | plus: trmnl.user.utc_offset -%}
+{% if custom_fields_values.testing_date != '' %}
+{%- assign todays_date = custom_fields_values.testing_date -%}
+{% else %}
+{%- assign todays_date = "now" -%}
+{% endif %}
+
+{%- assign today_timestamp = todays_date | date: "%s" | plus: trmnl.user.utc_offset -%}
 {%- assign today_date = today_timestamp | date: "%Y-%m-%d" -%}
 {%- assign day_of_week = today_timestamp | date: "%w" | plus: 0 -%}
 {%- assign days_since_monday = day_of_week -%}
@@ -42,9 +48,10 @@ append: IDX_0.results[0].street_name | append: ", " | append: IDX_0.results[0].s
 append: IDX_0.results[0].suburb %}
 {% endif %}
 {% if error != true %}
-{% assign today = "now" | date: "%s" | plus: trmnl.user.utc_offset | date: "%A" | upcase %}
+{% assign today = todays_date | date: "%s" | plus: trmnl.user.utc_offset | date: "%A" | upcase %}
 {% assign seconds_per_day = 86400 %}
-{% assign tomorrow = "now" | date: "%s" | plus: trmnl.user.utc_offset | plus: seconds_per_day | date: "%A" | upcase %}
+{% assign tomorrow = todays_date | date: "%s" | plus: trmnl.user.utc_offset | plus: seconds_per_day | date: "%A" |
+upcase %}
 {% assign collection_day = IDX_0.results[0].collection_day %}
 {% if collection_day == today %}
 {% assign collection_today = true %}
@@ -126,5 +133,5 @@ append: IDX_0.results[0].suburb %}
 <div class="title_bar">
     <div class="image image-stroke">{{ title_logo }}</div>
     <span class="title">BNE BIN</span>
-    <span class="instance">{{ address }} </span>
+    <span class="instance">{{ this_weeks_zone }} </span>
 </div>
