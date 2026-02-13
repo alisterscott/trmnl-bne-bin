@@ -183,3 +183,41 @@ test("can see a message when bin collection day beyond tomorrow next week (Monda
     fs.writeFileSync(destFile, originalContent, "utf-8"); // Restore original content
   }
 });
+
+test("can see a message when it cant work out bin collection day (no data)", async ({
+  page,
+}) => {
+  const sourceFile = path.join(__dirname, "nodata.trmnlp.yml");
+  const destFile = path.join(__dirname, "..", "..", ".trmnlp.yml");
+
+  if (!fs.existsSync(sourceFile)) {
+    throw new Error(`Source file not found: ${sourceFile}`);
+  }
+
+  if (!fs.existsSync(destFile)) {
+    throw new Error(`Destination file not found: ${destFile}`);
+  }
+
+  const originalContent = fs.readFileSync(destFile, "utf-8"); // Save original content to restore later
+
+  fs.copyFileSync(sourceFile, destFile);
+
+  try {
+    const routes = ["/quadrant", "/full", "/half_vertical", "/half_horizontal"];
+
+    for (const route of routes) {
+      await test.step(`Testing route: ${route}`, async () => {
+        await page.goto(route);
+        const trmnlFrame = page.frameLocator("iframe");
+        await expect(trmnlFrame.locator("div.title.error")).toHaveText(
+          "Well this is awkward",
+        );
+        await expect(trmnlFrame.locator("div.value.error")).toHaveText(
+          "Unable to find your bin collection schedule. Please check your plugin API settings.",
+        );
+      });
+    }
+  } finally {
+    fs.writeFileSync(destFile, originalContent, "utf-8"); // Restore original content
+  }
+});

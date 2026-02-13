@@ -1,9 +1,19 @@
-{% if error %}
+{% if address_error %}
     <div class="layout layout--col layout--stretch-x text--center error">
         <div>
             <div class="image image-stroke">{{ error_logo_small }}</div>
             <div class="title title--medium error">Well this is awkward</div><br>
             <div class="value value--xxsmall error">Unable to find '{{ original_address }}'. <br><br>Please check your plugin
+                settings.
+            </div>
+        </div>
+    </div>
+{% elsif schedule_error %}
+    <div class="layout layout--col layout--stretch-x text--center error">
+        <div>
+            <div class="image image-stroke">{{ error_logo_small }}</div>
+            <div class="title title--medium error">Well this is awkward</div><br>
+            <div class="value value--xxsmall error">Unable to find your bin collection schedule. <br><br>Please check your plugin API
                 settings.
             </div>
         </div>

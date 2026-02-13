@@ -37,12 +37,4 @@ variables:
           },
         ],
     }
-  "IDX_1":
-    {
-      "total_count": 162,
-      "results":
-        [
-          { "week_starting": "2026-02-09", "zone": "Zone 1" },
-          { "week_starting": "2026-02-16", "zone": "Zone 2" },
-        ],
-    }
+  "IDX_1": { "total_count": 0, "results": [] }
