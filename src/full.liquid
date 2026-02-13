@@ -66,7 +66,6 @@
     upcase %}
     {% assign collection_day = IDX_0.results[0].collection_day %}
 
-    // if collection date is earlier in the week than today, we want to use the zone for next week to determine the type of bin
     {% if collection_day == "MONDAY" and today != "MONDAY" %}
         {% assign next_week_collection = true  %}
     {% elsif collection_day == "TUESDAY" and (today != "MONDAY" and today != "TUESDAY") %}
@@ -112,19 +111,19 @@
     </div>
 {% else %}
     {% if collection_tomorrow %}
-        <div class="layout layout--col layout--stretch-x text--center">
+        <div class="layout layout--col layout--stretch-x text--center tomorrow">
             <div>
-                <div class="title title--large">Your bin collection is tomorrow!</div>
+                <div class="title title--large tomorrow">Your bin collection is tomorrow!</div>
                 <br>
-                <div class="value value--xxsmall"> Make sure you put your bins out by 5:30am tomorrow</div>
+                <div class="value value--xxsmall tomorrow"> Make sure you put your bins out by 5:30am tomorrow</div>
             </div>
         </div>
     {% elsif collection_today %}
-        <div class="layout layout--col layout--stretch-x text--center">
+        <div class="layout layout--col layout--stretch-x text--center today">
             <div>
-                <div class="title title--large">Bin collection day</div>
+                <div class="title title--large today">Bin collection day</div>
                 <br>
-                <div class="value value--xxsmall"> Make sure you bring your bins back in<br><br>Report a missed collection or
+                <div class="value value--xxsmall today"> Make sure you bring your bins back in<br><br>Report a missed collection or
                     problem
                     at tinyurl.com/bne-bin</div>
             </div>
@@ -132,7 +131,7 @@
     {% else %}
         <div class="layout layout--col layout--stretch-x text--center">
             <div>
-                <div class="title title--large">Your next bin collection is {{ collection_day | capitalize }}</div>
+                <div class="title title--large">Your next bin collection is {% if next_week_collection %} next {% else %} this {% endif %}{{ collection_day | capitalize }}</div>
             </div>
         </div>
     {% endif %}
