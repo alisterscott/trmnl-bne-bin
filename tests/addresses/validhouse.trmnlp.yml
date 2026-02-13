@@ -1,0 +1,38 @@
+---
+# auto-reload when files change (`watch: false` to disable)
+watch:
+  - src
+  - .trmnlp.yml
+
+# Time zone IANA identifier to inject into trmnl.user; see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+time_zone: Australia/Brisbane
+
+# values of custom fields (defined in src/settings.yml)
+custom_fields:
+  include_green_waste: "yes"
+  housenumber: 100
+  unitnumber:
+  streetname: Franklin St
+  suburb: Highgate Hill
+
+override variables:
+variables:
+  "IDX_0":
+    {
+      "total_count": 1,
+      "results":
+        [
+          {
+            "property_id": "433260",
+            "unit_number": null,
+            "house_number": "100",
+            "house_number_suffix": null,
+            "street_name": "FRANKLIN ST",
+            "suburb": "HIGHGATE HILL",
+            "collection_day": "MONDAY",
+            "zone": "ZONE 1",
+            "suburb_list": "H, HIGHGATE HILL",
+            "street_name_list": "F, FRANKLIN ST",
+          },
+        ],
+    }

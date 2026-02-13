@@ -2,10 +2,10 @@ import { test, expect } from "@playwright/test";
 import fs from "fs";
 import path from "path";
 
-test("can see a invalid house address when nothing is returned by the API for a house address search", async ({
+test("can see red and yellow bins for weeks where the zone matches the schedule", async ({
   page,
 }) => {
-  const sourceFile = path.join(__dirname, "invalidhouse.trmnlp.yml");
+  const sourceFile = path.join(__dirname, "redyellow.trmnlp.yml");
   const destFile = path.join(__dirname, "..", "..", ".trmnlp.yml");
 
   if (!fs.existsSync(sourceFile)) {
@@ -27,15 +27,24 @@ test("can see a invalid house address when nothing is returned by the API for a 
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
         const trmnlFrame = page.frameLocator("iframe");
-        await expect(trmnlFrame.locator("div.title.error")).toHaveText(
-          "Well this is awkward",
+        await expect(trmnlFrame.locator("div.red div.title")).toHaveText(
+          "RED LID",
         );
-        await expect(trmnlFrame.locator("div.value.error")).toHaveText(
-          "Unable to find '666 Franklin St, Highgate Hill'. Please check your plugin settings.",
+        await expect(trmnlFrame.locator("div.red div.value")).toHaveText(
+          "General Waste",
+        );
+        await expect(trmnlFrame.locator("div.yellow div.title")).toHaveText(
+          "YELLOW LID",
+        );
+        await expect(trmnlFrame.locator("div.yellow div.value")).toHaveText(
+          "Recycling",
         );
         await expect(
-          trmnlFrame.locator("div.title_bar span.instance"),
-        ).toHaveText("Unknown Address");
+          trmnlFrame.locator("div.green div.title"),
+        ).not.toBeVisible();
+        await expect(
+          trmnlFrame.locator("div.green div.value"),
+        ).not.toBeVisible();
       });
     }
   } finally {
@@ -43,10 +52,10 @@ test("can see a invalid house address when nothing is returned by the API for a 
   }
 });
 
-test("can see a invalid unit address when nothing is returned by the API for a unit address search", async ({
+test("can see red and green bins where the zone matches the schedule and green bins is enabled", async ({
   page,
 }) => {
-  const sourceFile = path.join(__dirname, "invalidunit.trmnlp.yml");
+  const sourceFile = path.join(__dirname, "redgreen.trmnlp.yml");
   const destFile = path.join(__dirname, "..", "..", ".trmnlp.yml");
 
   if (!fs.existsSync(sourceFile)) {
@@ -68,15 +77,24 @@ test("can see a invalid unit address when nothing is returned by the API for a u
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
         const trmnlFrame = page.frameLocator("iframe");
-        await expect(trmnlFrame.locator("div.title.error")).toHaveText(
-          "Well this is awkward",
+        await expect(trmnlFrame.locator("div.red div.title")).toHaveText(
+          "RED LID",
         );
-        await expect(trmnlFrame.locator("div.value.error")).toHaveText(
-          "Unable to find '8/888 Franklin St, Highgate Hill'. Please check your plugin settings.",
+        await expect(trmnlFrame.locator("div.red div.value")).toHaveText(
+          "General Waste",
+        );
+        await expect(trmnlFrame.locator("div.green div.title")).toHaveText(
+          "GREEN LID",
+        );
+        await expect(trmnlFrame.locator("div.green div.value")).toHaveText(
+          "Garden Waste",
         );
         await expect(
-          trmnlFrame.locator("div.title_bar span.instance"),
-        ).toHaveText("Unknown Address");
+          trmnlFrame.locator("div.yellow div.title"),
+        ).not.toBeVisible();
+        await expect(
+          trmnlFrame.locator("div.yellow div.value"),
+        ).not.toBeVisible();
       });
     }
   } finally {
@@ -84,10 +102,10 @@ test("can see a invalid unit address when nothing is returned by the API for a u
   }
 });
 
-test("can see a valid house address when it is returned by the API for a house address search", async ({
+test("can see only the red bin where the zone matches the schedule and green bins is disabled", async ({
   page,
 }) => {
-  const sourceFile = path.join(__dirname, "validhouse.trmnlp.yml");
+  const sourceFile = path.join(__dirname, "redgreendisabled.trmnlp.yml");
   const destFile = path.join(__dirname, "..", "..", ".trmnlp.yml");
 
   if (!fs.existsSync(sourceFile)) {
@@ -109,9 +127,24 @@ test("can see a valid house address when it is returned by the API for a house a
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
         const trmnlFrame = page.frameLocator("iframe");
+        await expect(trmnlFrame.locator("div.red div.title")).toHaveText(
+          "RED LID",
+        );
+        await expect(trmnlFrame.locator("div.red div.value")).toHaveText(
+          "General Waste",
+        );
         await expect(
-          trmnlFrame.locator("div.title_bar span.instance"),
-        ).toHaveText("100 FRANKLIN ST, HIGHGATE HILL");
+          trmnlFrame.locator("div.green div.title"),
+        ).not.toBeVisible();
+        await expect(
+          trmnlFrame.locator("div.green div.value"),
+        ).not.toBeVisible();
+        await expect(
+          trmnlFrame.locator("div.yellow div.title"),
+        ).not.toBeVisible();
+        await expect(
+          trmnlFrame.locator("div.yellow div.value"),
+        ).not.toBeVisible();
       });
     }
   } finally {
@@ -119,10 +152,10 @@ test("can see a valid house address when it is returned by the API for a house a
   }
 });
 
-test("can see a valid unit address when it is returned by the API for a house address search", async ({
+test("can see next weeks bins when bins have already been collected this week", async ({
   page,
 }) => {
-  const sourceFile = path.join(__dirname, "validunit.trmnlp.yml");
+  const sourceFile = path.join(__dirname, "nextweek.trmnlp.yml");
   const destFile = path.join(__dirname, "..", "..", ".trmnlp.yml");
 
   if (!fs.existsSync(sourceFile)) {
@@ -144,9 +177,24 @@ test("can see a valid unit address when it is returned by the API for a house ad
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
         const trmnlFrame = page.frameLocator("iframe");
+        await expect(trmnlFrame.locator("div.red div.title")).toHaveText(
+          "RED LID",
+        );
+        await expect(trmnlFrame.locator("div.red div.value")).toHaveText(
+          "General Waste",
+        );
+        await expect(trmnlFrame.locator("div.yellow div.title")).toHaveText(
+          "YELLOW LID",
+        );
+        await expect(trmnlFrame.locator("div.yellow div.value")).toHaveText(
+          "Recycling",
+        );
         await expect(
-          trmnlFrame.locator("div.title_bar span.instance"),
-        ).toHaveText("10/100 FRANKLIN ST, HIGHGATE HILL");
+          trmnlFrame.locator("div.green div.title"),
+        ).not.toBeVisible();
+        await expect(
+          trmnlFrame.locator("div.green div.value"),
+        ).not.toBeVisible();
       });
     }
   } finally {

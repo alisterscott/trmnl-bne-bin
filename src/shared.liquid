@@ -31,7 +31,7 @@ https://github.com/Templarian/MaterialDesign/blob/master/LICENSE
   </path>
 </svg>{% endcapture %}
 
-{% assign image_size_small = 96 %}
+{% assign image_size_small = 48 %}
 {% capture waste_logo_small %}<svg viewBox="0 0 24 24"
   style="height: {{ image_size_small }}px; width: {{ image_size_small }}px;">
   <path fill="currentColor"
@@ -56,3 +56,110 @@ https://github.com/Templarian/MaterialDesign/blob/master/LICENSE
     d="M8 12H10V14H8V12M8 7H10V11H8V7M18 18.5C18.8 18.5 19.5 17.8 19.5 17S18.8 15.5 18 15.5 16.5 16.2 16.5 17 17.2 18.5 18 18.5M19.5 9.5H17V12H21.5L19.5 9.5M6 18.5C6.8 18.5 7.5 17.8 7.5 17S6.8 15.5 6 15.5 4.5 16.2 4.5 17 5.2 18.5 6 18.5M20 8L23 12V17H21C21 18.7 19.7 20 18 20S15 18.7 15 17H9C9 18.7 7.7 20 6 20S3 18.7 3 17H1V6C1 4.9 1.9 4 3 4H17V8H20M3 6V15H3.8C4.3 14.4 5.2 14 6 14S7.7 14.4 8.2 15H15V6H3Z">
   </path>
 </svg>{% endcapture %}
+
+{% assign collection_today = false %}
+{% assign collection_tomorrow = false %}
+{% assign recycling_week = false %}
+{% assign green_waste_week = false %}
+{% assign custom_fields_values = trmnl.plugin_settings.custom_fields_values %}
+
+{% if custom_fields_values.testing_date != '' %}
+    {%- assign todays_date = custom_fields_values.testing_date -%}
+{% else %}
+    {%- assign todays_date = "now" -%}
+{% endif %}
+
+{%- assign today_timestamp = todays_date | date: "%s" | plus: trmnl.user.utc_offset -%}
+{%- assign today_date = today_timestamp | date: "%Y-%m-%d" -%}
+{%- assign day_of_week = today_timestamp | date: "%w" | plus: 0 -%}
+{%- assign days_since_monday = day_of_week -%}
+{%- if day_of_week == 0 -%}
+    {%- assign days_since_monday = 6 -%}
+{%- else -%}
+    {%- assign days_since_monday = day_of_week | minus: 1 -%}
+{%- endif -%}
+{%- assign seconds_to_subtract = days_since_monday | times: 86400 -%}
+{%- assign week_start_timestamp = today_timestamp | minus: seconds_to_subtract -%}
+{%- assign week_starting = week_start_timestamp | date: "%Y-%m-%d" -%}
+{%- assign seconds_to_add = 7 | times: 86400 -%}
+{%- assign next_week_starting_timestamp = week_start_timestamp | plus: seconds_to_add -%}
+{%- assign next_week_starting = next_week_starting_timestamp | date: "%Y-%m-%d" -%}
+
+{%- assign this_weeks_zone = "" -%}
+{%- for result in IDX_1.results -%}
+    {%- if result.week_starting == week_starting -%}
+        {%- assign this_weeks_zone = result.zone | upcase -%}
+        {%- break -%}
+    {%- endif -%}
+{%- endfor -%}
+{%- assign next_weeks_zone = "" -%}
+{%- for result in IDX_1.results -%}
+    {%- if result.week_starting == next_week_starting -%}
+        {%- assign next_weeks_zone = result.zone | upcase -%}
+        {%- break -%}
+    {%- endif -%}
+{%- endfor -%}
+
+{% if this_weeks_zone == "" or next_weeks_zone == "" %}
+    {% assign schedule_error = true %}
+{% endif %}
+
+{% if custom_fields_values.unitnumber != '' %}
+    {% assign original_address = custom_fields_values.unitnumber | append: "/" | append: custom_fields_values.housenumber |
+    append: " " | append: custom_fields_values.streetname | append: ", " | append: custom_fields_values.suburb %}
+{% else %}
+    {% assign original_address = custom_fields_values.housenumber | append: " " | append: custom_fields_values.streetname |
+    append: ", " | append: custom_fields_values.suburb %}
+{% endif %}
+{% if IDX_0.total_count == 0 %}
+    {% assign address = "Unknown Address" %}
+    {% assign address_error = true %}
+{% elsif IDX_0.results[0].unit_number != null %}
+    {% assign address = IDX_0.results[0].unit_number | append: "/" | append: IDX_0.results[0].house_number | append: " " |
+    append: IDX_0.results[0].street_name | append: ", " | append: IDX_0.results[0].suburb %}
+{% else %}
+    {% assign address = IDX_0.results[0].house_number | append: " " | append: IDX_0.results[0].street_name | append: ", " |
+    append: IDX_0.results[0].suburb %}
+{% endif %}
+
+{% if schedule_error != true and address_error != true %}
+    {% assign today = todays_date | date: "%s" | plus: trmnl.user.utc_offset | date: "%A" | upcase %}
+    {% assign seconds_per_day = 86400 %}
+    {% assign tomorrow = todays_date | date: "%s" | plus: trmnl.user.utc_offset | plus: seconds_per_day | date: "%A" |
+    upcase %}
+    {% assign collection_day = IDX_0.results[0].collection_day %}
+
+    {% if collection_day == "MONDAY" and today != "MONDAY" %}
+        {% assign next_week_collection = true  %}
+    {% elsif collection_day == "TUESDAY" and (today != "MONDAY" and today != "TUESDAY") %}
+         {% assign next_week_collection = true  %}
+    {% elsif collection_day == "WEDNESDAY" and (today != "MONDAY" and today != "TUESDAY" and today != "WEDNESDAY") %}
+        {% assign next_week_collection = true  %}
+    {% elsif collection_day == "THURSDAY" and (today != "MONDAY" and today != "TUESDAY" and today != "WEDNESDAY" and today != "THURSDAY") %}
+        {% assign next_week_collection = true  %}
+    {% elsif collection_day == "FRIDAY" and (today != "MONDAY" and today != "TUESDAY" and today != "WEDNESDAY" and today != "THURSDAY" and today != "FRIDAY") %}
+        {% assign next_week_collection = true  %}
+    {% elsif collection_day == "SATURDAY" and (today != "MONDAY" and today != "TUESDAY" and today != "WEDNESDAY" and today != "THURSDAY" and today != "FRIDAY" and today != "SATURDAY") %}
+        {% assign next_week_collection = true  %}
+    {% endif %}
+
+    {% if collection_day == today %}
+        {% assign collection_today = true %}
+    {% endif %}
+    {% if collection_day == tomorrow %}
+        {% assign collection_tomorrow = true %}
+    {% endif %}
+    {% assign my_zone = IDX_0.results[0].zone | upcase %}
+    {% if next_week_collection %}
+        {% assign collection_zone = next_weeks_zone %}
+    {% else %}
+        {% assign collection_zone = this_weeks_zone %}
+    {% endif %}
+    {% if collection_zone == my_zone %}
+        {% assign recycling_week = true %}
+    {% else %}
+        {% if custom_fields_values.include_green_waste == "yes" %}
+            {% assign green_waste_week = true %}
+        {% endif %}
+    {% endif %}
+{% endif %}

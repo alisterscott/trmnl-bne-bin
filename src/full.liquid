@@ -1,126 +1,71 @@
-{% assign collection_today = false %}
-{% assign collection_tomorrow = false %}
-{% assign recycling_week = false %}
-{% assign green_waste_week = false %}
-{% assign custom_fields_values = trmnl.plugin_settings.custom_fields_values %}
-
-{%- assign today_timestamp = "now" | date: "%s" | plus: trmnl.user.utc_offset -%}
-{%- assign today_date = today_timestamp | date: "%Y-%m-%d" -%}
-{%- assign day_of_week = today_timestamp | date: "%w" | plus: 0 -%}
-{%- assign days_since_monday = day_of_week -%}
-{%- if day_of_week == 0 -%}
-{%- assign days_since_monday = 6 -%}
-{%- else -%}
-{%- assign days_since_monday = day_of_week | minus: 1 -%}
-{%- endif -%}
-{%- assign seconds_to_subtract = days_since_monday | times: 86400 -%}
-{%- assign week_start_timestamp = today_timestamp | minus: seconds_to_subtract -%}
-{%- assign week_starting = week_start_timestamp | date: "%Y-%m-%d" -%}
-
-{%- assign this_weeks_zone = "" -%}
-{%- for result in IDX_1.results -%}
-{%- if result.week_starting == week_starting -%}
-{%- assign this_weeks_zone = result.zone | upcase -%}
-{%- break -%}
-{%- endif -%}
-{%- endfor -%}
-{% if custom_fields_values.unitnumber != '' %}
-{% assign original_address = custom_fields_values.unitnumber | append: "/" | append: custom_fields_values.housenumber |
-append: " " | append: custom_fields_values.streetname | append: ", " | append: custom_fields_values.suburb %}
-{% else %}
-{% assign original_address = custom_fields_values.housenumber | append: " " | append: custom_fields_values.streetname |
-append: ", " | append: custom_fields_values.suburb %}
-{% endif %}
-{% if IDX_0.total_count == 0 %}
-{% assign address = "Unknown Address" %}
-{% assign error = true %}
-{% elsif IDX_0.results[0].unit_number != null %}
-{% assign address = IDX_0.results[0].unit_number | append: "/" | append: IDX_0.results[0].house_number | append: " " |
-append: IDX_0.results[0].street_name | append: ", " | append: IDX_0.results[0].suburb %}
-{% else %}
-{% assign address = IDX_0.results[0].house_number | append: " " | append: IDX_0.results[0].street_name | append: ", " |
-append: IDX_0.results[0].suburb %}
-{% endif %}
-{% if error != true %}
-{% assign today = "now" | date: "%s" | plus: trmnl.user.utc_offset | date: "%A" | upcase %}
-{% assign seconds_per_day = 86400 %}
-{% assign tomorrow = "now" | date: "%s" | plus: trmnl.user.utc_offset | plus: seconds_per_day | date: "%A" | upcase %}
-{% assign collection_day = IDX_0.results[0].collection_day %}
-{% if collection_day == today %}
-{% assign collection_today = true %}
-{% endif %}
-{% if collection_day == tomorrow %}
-{% assign collection_tomorrow = true %}
-{% endif %}
-{% assign my_zone = IDX_0.results[0].zone | upcase %}
-{% if this_weeks_zone == my_zone %}
-{% assign recycling_week = true %}
-{% else %}
-{% if custom_fields_values.include_green_waste == "yes" %}
-{% assign green_waste_week = true %}
-{% endif %}
-{% endif %}
-{% endif %}
-
-{% if error %}
-<div class="layout layout--col layout--stretch-x text--center error">
-    <div>
-        <div class="image image-stroke">{{ error_logo }}</div>
-        <div class="title title--large error">Well this is awkward</div>
-        <div class="value value--xsmall error">Unable to find '{{ original_address }}'. <br>Please check your plugin
-            settings.
+{% if address_error %}
+    <div class="layout layout--col layout--stretch-x text--center error">
+        <div>
+            <div class="image image-stroke">{{ error_logo }}</div>
+            <div class="title title--large error">Well this is awkward</div>
+            <div class="value value--xsmall error">Unable to find '{{ original_address }}'. <br>Please check your plugin
+                settings.
+            </div>
+        </div>
+{% elsif schedule_error %}
+    <div class="layout layout--col layout--stretch-x text--center error">
+        <div>
+            <div class="image image-stroke">{{ error_logo }}</div>
+            <div class="title title--large error">Well this is awkward</div>
+            <div class="value value--xsmall error">Unable to find your bin collection schedule. <br>Please check your plugin API
+                settings.
+            </div>
         </div>
     </div>
-</div>
 {% else %}
-{% if collection_tomorrow %}
-<div class="layout layout--col layout--stretch-x text--center">
-    <div>
-        <div class="title title--large">Your bin collection is tomorrow!</div>
-        <br>
-        <div class="value value--xxsmall"> Make sure you put your bins out by 5:30am tomorrow</div>
-    </div>
-</div>
-{% elsif collection_today %}
-<div class="layout layout--col layout--stretch-x text--center">
-    <div>
-        <div class="title title--large">Bin collection day</div>
-        <br>
-        <div class="value value--xxsmall"> Make sure you bring your bins back in<br><br>Report a missed collection or
-            problem
-            at tinyurl.com/bne-bin</div>
-    </div>
-</div>
-{% else %}
-<div class="layout layout--col layout--stretch-x text--center">
-    <div>
-        <div class="title title--large">Your next bin collection is {{ collection_day | capitalize }}</div>
-    </div>
-</div>
-{% endif %}
-
-<div class="layout layout--row layout--stretch-x text--center">
-    <div>
-        <div class="image image-stroke">{{ waste_logo }}</div>
-        <div class="title mb--2">RED LID</div>
-        <div class="value value--xsmall">General Waste</div>
-    </div>
-    {% if recycling_week %}
-    <div>
-        <div class="image image-stroke">{{ recycling_logo }}</div>
-        <div class="title mb--2">YELLOW LID</div>
-        <div class="value value--xsmall">Recycling</div>
-    </div>
+    {% if collection_tomorrow %}
+        <div class="layout layout--col layout--stretch-x text--center tomorrow">
+            <div>
+                <div class="title title--large tomorrow">Your bin collection is tomorrow!</div>
+                <br>
+                <div class="value value--xxsmall tomorrow"> Make sure you put your bins out by 5:30am tomorrow</div>
+            </div>
+        </div>
+    {% elsif collection_today %}
+        <div class="layout layout--col layout--stretch-x text--center today">
+            <div>
+                <div class="title title--large today">Bin collection day</div>
+                <br>
+                <div class="value value--xxsmall today"> Make sure you bring your bins back in<br><br>Report a missed collection or
+                    problem
+                    at tinyurl.com/bne-bin</div>
+            </div>
+        </div>
+    {% else %}
+        <div class="layout layout--col layout--stretch-x text--center later">
+            <div>
+                <div class="title title--large later">Your bin collection is {% if next_week_collection %} next {% else %} this {% endif %}{{ collection_day | capitalize }}</div>
+            </div>
+        </div>
     {% endif %}
 
-    {% if green_waste_week %}
-    <div>
-        <div class="image image-stroke">{{ garden_waste_logo }}</div>
-        <div class="title mb--2">GREEN LID</div>
-        <div class="value value--xsmall">Garden Waste</div>
+    <div class="layout layout--row layout--stretch-x text--center">
+        <div class="red">
+            <div class="image image-stroke">{{ waste_logo }}</div>
+            <div class="title mb--2">RED LID</div>
+            <div class="value value--xsmall">General Waste</div>
+        </div>
+        {% if recycling_week %}
+        <div class="yellow">
+            <div class="image image-stroke">{{ recycling_logo }}</div>
+            <div class="title mb--2">YELLOW LID</div>
+            <div class="value value--xsmall">Recycling</div>
+        </div>
+        {% endif %}
+
+        {% if green_waste_week %}
+        <div class="green">
+            <div class="image image-stroke">{{ garden_waste_logo }}</div>
+            <div class="title mb--2">GREEN LID</div>
+            <div class="value value--xsmall">Garden Waste</div>
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
-</div>
 {% endif %}
 
 <div class="title_bar">
