@@ -148,6 +148,8 @@ https://github.com/Templarian/MaterialDesign/blob/master/LICENSE
     {% assign my_zone = IDX_0.results[0].zone | upcase %}
     {% if next_week_collection %}
         {% assign collection_zone = next_weeks_zone %}
+    {% else %}
+        {% assign collection_zone = this_weeks_zone %}
     {% endif %}
     {% if collection_zone == my_zone %}
         {% assign recycling_week = true %}

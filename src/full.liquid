@@ -36,13 +36,13 @@
     {% endif %}
 
     <div class="layout layout--row layout--stretch-x text--center">
-        <div>
+        <div class="red">
             <div class="image image-stroke">{{ waste_logo }}</div>
             <div class="title mb--2">RED LID</div>
             <div class="value value--xsmall">General Waste</div>
         </div>
         {% if recycling_week %}
-        <div>
+        <div class="yellow">
             <div class="image image-stroke">{{ recycling_logo }}</div>
             <div class="title mb--2">YELLOW LID</div>
             <div class="value value--xsmall">Recycling</div>
@@ -50,7 +50,7 @@
         {% endif %}
 
         {% if green_waste_week %}
-        <div>
+        <div class="green">
             <div class="image image-stroke">{{ garden_waste_logo }}</div>
             <div class="title mb--2">GREEN LID</div>
             <div class="value value--xsmall">Garden Waste</div>
