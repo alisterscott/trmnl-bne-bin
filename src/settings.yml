@@ -1,50 +1,50 @@
 ---
 strategy: polling
-no_screen_padding: 'no'
-dark_mode: 'no'
-static_data: 
+no_screen_padding: "no"
+dark_mode: "no"
+static_data:
 polling_verb: get
 polling_url: "https://data.brisbane.qld.gov.au/api/explore/v2.1/catalog/datasets/waste-collection-days-collection-days/records?where=suburb%20like%20%27{{ suburb }}%27%20and%20house_number%20%3D%20%27{{ housenumber  }}%27%20and%20street_name%20like%20%27{{ streetname  }}%27{% if unitnumber != \"\" %}and%20unit_number%20%3D%20%27{{ unitnumber  }}%27%20{% endif %}&limit=10&offset=0&timezone=UTC&include_links=false&include_app_metas=false\r\nhttps://data.brisbane.qld.gov.au/api/explore/v2.1/catalog/datasets/waste-collection-days-collection-weeks/records?order_by=week_starting%20asc&limit=26&offset=0&timezone=UTC&include_links=false&include_app_metas=false"
-polling_headers: ''
-polling_body: ''
+polling_headers: ""
+polling_body: ""
 id: 240601
 custom_fields:
-- keyname: author_bio
-  field_type: author_bio
-  name: Brisbane Bin Collection by Alister Scott
-  description: A Personalised Bin Collection Schedule for Brisbane, Queensland, Australia
-  category: life,productivity
-  github_url: https://github.com/alisterscott/trmnl-bne-bin
-- keyname: include_green_waste
-  field_type: select
-  name: Include Green Waste Bin?
-  description: If set to no the green waste bin will NOT be displayed
-  options:
-  - 'Yes'
-  - 'No'
-  default: 'yes'
-- keyname: housenumber
-  field_type: number
-  name: House Number
-  placeholder: '111'
-- keyname: unitnumber
-  field_type: number
-  name: Unit Number
-  description: Optional
-  optional: true
-- keyname: streetname
-  field_type: string
-  name: Street Name
-  placeholder: Dudley St
-- keyname: suburb
-  field_type: text
-  name: Suburb
-  placeholder: Highgate Hill
-- keyname: testing_date
-  field_type: date
-  name: Testing Date
-  description: This is for testing purposes only, leave blank to use today's date for collection
-  optional: true
-  help_text: optional and for testing purposes only
-name: BNE BIN Collection
+  - keyname: author_bio
+    field_type: author_bio
+    name: Brisbane Bin Collection by Alister Scott
+    description: A Personalised Bin Collection Schedule for Brisbane, Queensland, Australia
+    category: life,productivity
+    github_url: https://github.com/alisterscott/trmnl-bne-bin
+  - keyname: include_green_waste
+    field_type: select
+    name: Include Green Waste Bin?
+    description: If set to no the green waste bin will NOT be displayed
+    options:
+      - "Yes"
+      - "No"
+    default: "yes"
+  - keyname: housenumber
+    field_type: number
+    name: House Number
+    placeholder: "111"
+  - keyname: unitnumber
+    field_type: number
+    name: Unit Number
+    description: Optional
+    optional: true
+  - keyname: streetname
+    field_type: string
+    name: Street Name
+    placeholder: Dudley St
+  - keyname: suburb
+    field_type: text
+    name: Suburb
+    placeholder: Highgate Hill
+  - keyname: testing_date
+    field_type: date
+    name: Testing Date
+    description: This is for testing purposes only, leave blank to use today's date for collection
+    optional: true
+    help_text: optional and for testing purposes only
+name: Brisbane Bin Collection
 refresh_interval: 30
