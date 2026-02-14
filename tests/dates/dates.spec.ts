@@ -24,6 +24,7 @@ test("can see a message when bin collection day is today", async ({ page }) => {
     for (const route of routes) {
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
+        await page.getByRole("link", { name: "Poll" }).click();
         const trmnlFrame = page.frameLocator("iframe");
         await expect(trmnlFrame.locator("div.title.today")).toHaveText(
           "Bin collection day",
@@ -62,6 +63,7 @@ test("can see a message when bin collection day is tomorrow but this week", asyn
     for (const route of routes) {
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
+        await page.getByRole("link", { name: "Poll" }).click();
         const trmnlFrame = page.frameLocator("iframe");
         await expect(trmnlFrame.locator("div.title.tomorrow")).toHaveText(
           "Your bin collection is tomorrow!",
@@ -100,6 +102,7 @@ test("can see a message when bin collection day is tomorrow but next week", asyn
     for (const route of routes) {
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
+        await page.getByRole("link", { name: "Poll" }).click();
         const trmnlFrame = page.frameLocator("iframe");
         await expect(trmnlFrame.locator("div.title.tomorrow")).toHaveText(
           "Your bin collection is tomorrow!",
@@ -138,6 +141,7 @@ test("can see a message when bin collection day beyond tomorrow this week (Wedne
     for (const route of routes) {
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
+        await page.getByRole("link", { name: "Poll" }).click();
         const trmnlFrame = page.frameLocator("iframe");
         await expect(trmnlFrame.locator("div.title.later")).toHaveText(
           "Your bin collection is this Wednesday",
@@ -173,6 +177,7 @@ test("can see a message when bin collection day beyond tomorrow next week (Monda
     for (const route of routes) {
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
+        await page.getByRole("link", { name: "Poll" }).click();
         const trmnlFrame = page.frameLocator("iframe");
         await expect(trmnlFrame.locator("div.title.later")).toHaveText(
           "Your bin collection is next Monday",
@@ -208,6 +213,7 @@ test("can see a message when it cant work out bin collection day (no data)", asy
     for (const route of routes) {
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
+        await page.getByRole("link", { name: "Poll" }).click();
         const trmnlFrame = page.frameLocator("iframe");
         await expect(trmnlFrame.locator("div.title.error")).toHaveText(
           "Well this is awkward",

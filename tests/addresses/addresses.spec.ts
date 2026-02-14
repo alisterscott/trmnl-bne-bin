@@ -26,6 +26,7 @@ test("can see a invalid house address when nothing is returned by the API for a 
     for (const route of routes) {
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
+        await page.getByRole("link", { name: "Poll" }).click();
         const trmnlFrame = page.frameLocator("iframe");
         await expect(trmnlFrame.locator("div.title.error")).toHaveText(
           "Well this is awkward",
@@ -67,6 +68,7 @@ test("can see a invalid unit address when nothing is returned by the API for a u
     for (const route of routes) {
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
+        await page.getByRole("link", { name: "Poll" }).click();
         const trmnlFrame = page.frameLocator("iframe");
         await expect(trmnlFrame.locator("div.title.error")).toHaveText(
           "Well this is awkward",
@@ -108,6 +110,7 @@ test("can see a valid house address when it is returned by the API for a house a
     for (const route of routes) {
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
+        await page.getByRole("link", { name: "Poll" }).click();
         const trmnlFrame = page.frameLocator("iframe");
         await expect(
           trmnlFrame.locator("div.title_bar span.instance"),
@@ -143,6 +146,7 @@ test("can see a valid unit address when it is returned by the API for a house ad
     for (const route of routes) {
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
+        await page.getByRole("link", { name: "Poll" }).click();
         const trmnlFrame = page.frameLocator("iframe");
         await expect(
           trmnlFrame.locator("div.title_bar span.instance"),

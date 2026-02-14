@@ -26,6 +26,7 @@ test("can see red and yellow bins for weeks where the zone matches the schedule"
     for (const route of routes) {
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
+        await page.getByRole("link", { name: "Poll" }).click();
         const trmnlFrame = page.frameLocator("iframe");
         await expect(trmnlFrame.locator("div.red div.title")).toHaveText(
           "RED LID",
@@ -76,6 +77,7 @@ test("can see red and green bins where the zone matches the schedule and green b
     for (const route of routes) {
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
+        await page.getByRole("link", { name: "Poll" }).click();
         const trmnlFrame = page.frameLocator("iframe");
         await expect(trmnlFrame.locator("div.red div.title")).toHaveText(
           "RED LID",
@@ -126,6 +128,7 @@ test("can see only the red bin where the zone matches the schedule and green bin
     for (const route of routes) {
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
+        await page.getByRole("link", { name: "Poll" }).click();
         const trmnlFrame = page.frameLocator("iframe");
         await expect(trmnlFrame.locator("div.red div.title")).toHaveText(
           "RED LID",
@@ -176,6 +179,7 @@ test("can see next weeks bins when bins have already been collected this week", 
     for (const route of routes) {
       await test.step(`Testing route: ${route}`, async () => {
         await page.goto(route);
+        await page.getByRole("link", { name: "Poll" }).click();
         const trmnlFrame = page.frameLocator("iframe");
         await expect(trmnlFrame.locator("div.red div.title")).toHaveText(
           "RED LID",
