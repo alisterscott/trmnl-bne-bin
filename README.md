@@ -2,7 +2,7 @@
 
 ![trmnl-bne-bin screenshot](./media/screenshot.png)
 
-![trmnl-bne-bin gif](./media/bnebin.gif)
+![trmnl-bne-bin today](./media/today.png)
 
 ## Setup
 
