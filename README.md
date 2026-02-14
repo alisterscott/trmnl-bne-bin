@@ -1,4 +1,8 @@
-# trmnl-bne-bin
+# Brisbane Bin Collection Plugin for TRMNL Devices
+
+![trmnl-bne-bin screenshot](./media/screenshot.png)
+
+![trmnl-bne-bin gif](./media/bnebin.gif)
 
 ## Setup
 

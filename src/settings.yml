@@ -46,5 +46,5 @@ custom_fields:
   description: This is for testing purposes only, leave blank to use today's date for collection
   optional: true
   help_text: optional and for testing purposes only
-name: BNE BIN Collection
+name: Brisbane Bin Collection
 refresh_interval: 30
