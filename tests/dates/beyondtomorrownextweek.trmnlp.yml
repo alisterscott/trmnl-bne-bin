@@ -14,7 +14,6 @@ custom_fields:
   unitnumber: 8
   streetname: Franklin St
   suburb: Highgate Hill
-  testing_date: "2026-02-10" # Tuesday
 
 override variables:
 variables:
@@ -46,3 +45,4 @@ variables:
           { "week_starting": "2026-02-16", "zone": "Zone 2" },
         ],
     }
+  testing_date: "2026-02-10" # Tuesday

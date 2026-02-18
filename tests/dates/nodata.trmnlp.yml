@@ -14,7 +14,6 @@ custom_fields:
   unitnumber: 8
   streetname: Franklin St
   suburb: Highgate Hill
-  testing_date: "2026-02-09" # Monday
 
 override variables:
 variables:
@@ -38,3 +37,4 @@ variables:
         ],
     }
   "IDX_1": { "total_count": 0, "results": [] }
+  testing_date: "2026-02-09" # Monday
