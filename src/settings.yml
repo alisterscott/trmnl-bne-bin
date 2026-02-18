@@ -40,11 +40,5 @@ custom_fields:
   field_type: text
   name: Suburb
   placeholder: Highgate Hill
-- keyname: testing_date
-  field_type: date
-  name: Testing Date
-  description: This is for testing purposes only, leave blank to use today's date for collection
-  optional: true
-  help_text: optional and for testing purposes only
 name: Brisbane Bin Collection
 refresh_interval: 30
