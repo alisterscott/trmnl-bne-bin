@@ -63,7 +63,7 @@ https://github.com/Templarian/MaterialDesign/blob/master/LICENSE
 {% assign green_waste_week = false %}
 {% assign custom_fields_values = trmnl.plugin_settings.custom_fields_values %}
 
-{% if testing_date != '' %}
+{% if testing_date and testing_date != '' %}
     {%- assign todays_date = testing_date -%}
 {% else %}
     {%- assign todays_date = "now" -%}
